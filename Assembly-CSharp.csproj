@@ -102,6 +102,7 @@
      <Compile Include="Assets\AutoHand\Scripts\Grabbable\GrabbableOnlyJoint.cs" />
      <Compile Include="Assets\Escape(Game Kit)\Scripts\LoadScene.cs" />
      <Compile Include="Assets\AutoHand\Scripts\Hand\HandTeleportGuard.cs" />
+     <Compile Include="Assets\UIManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\AutoHand\Scripts\Templates\HandTouchEventDebugger.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
@@ -325,6 +326,7 @@
      <Folder Include="Assets\Escape(Game Kit)\Models\Small table 1\Materials" />
      <Folder Include="Assets\Escape(Game Kit)\Models\Bed\Textures" />
      <Folder Include="Assets\AutoHand\Scripts\BETA" />
+     <Folder Include="Assets\bohemian-typewriter" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <Folder Include="Assets\Escape(Game Kit)\Models\Phone\Textures" />
      <Folder Include="Assets\Escape(Game Kit)\Models\Tv\Textures" />
@@ -631,6 +633,7 @@
      <Folder Include="Assets\TextMesh Pro\Documentation" />
      <Folder Include="Assets\AutoHand\Packages (Setup)" />
      <Folder Include="Assets\Escape(Game Kit)\Models\Panel2" />
+     <None Include="Assets\bohemian-typewriter\README - License information - Do not remove!.txt" />
      <Folder Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Smoke &amp; Steam Effects" />
      <Folder Include="Assets\Escape(Game Kit)\Models\metal shvel\Materials" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras" />

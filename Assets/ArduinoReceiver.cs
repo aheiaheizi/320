@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
 
-
 public class ArduinoReceiver : MonoBehaviour
 {
     SerialPort data_stream = new SerialPort("COM11", 115200); //Arduino connected to COM7 with 115200 baud rate
     public string receivedString;
     public int bodyTemp = 100;
+    public float heartbeatBPM;
     public int tempIncrease;
     public int tempDecrease = 3;
     public bool isTempZero;
@@ -17,11 +17,10 @@ public class ArduinoReceiver : MonoBehaviour
 
     public GameObject coldBreath;
     public AudioClip heartbeat;
-    public AudioSource soundSource;
+    public AudioSource heartbeatSoundSource;
+    GameObject myColdBreath;
     public bool m_play;
     bool m_ToggleChange;
-
-    GameObject myColdBreath;
 
     public string[] datas;
 
@@ -29,11 +28,11 @@ public class ArduinoReceiver : MonoBehaviour
     void Start()
     {
         data_stream.Open(); //Initialize the serial stream
-        myColdBreath = Instantiate(coldBreath, new Vector3(0, 0, 0), Quaternion.identity);
+        myColdBreath = Instantiate(coldBreath, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         myColdBreath.SetActive(false);
         isTempZero = false;
 
-        soundSource = GetComponent<AudioSource>();
+        heartbeatSoundSource = GetComponent<AudioSource>();
         m_play = true;
     }
 
@@ -46,17 +45,19 @@ public class ArduinoReceiver : MonoBehaviour
         Debug.Log("Heart rate" + float.Parse(datas[0]));
         Debug.Log("Normalized value" + float.Parse(datas[1]));
 
+        heartbeatBPM = float.Parse(datas[0]);
+
         CheckTemperature(float.Parse(datas[1]));
-        if (!soundSource.isPlaying && (int)float.Parse(datas[0]) > 0)
+        if (!heartbeatSoundSource.isPlaying && (int)float.Parse(datas[0]) > 0)
         {
             pitchFactor = MapBPMToPitchFactor((int)float.Parse(datas[0]));
-            soundSource.clip = heartbeat;
-            soundSource.pitch = pitchFactor;
-            soundSource.Play();
+            heartbeatSoundSource.clip = heartbeat;
+            heartbeatSoundSource.pitch = pitchFactor;
+            heartbeatSoundSource.Play();
         }
+            ;
     }
-    
-    
+
     void CheckTemperature(float data)
     {
         if (!isTempZero)
@@ -107,7 +108,7 @@ public class ArduinoReceiver : MonoBehaviour
             }
         }
     }
-    
+
     float MapBPMToPitchFactor(int bpm)
     {
         // Define the BPM range
